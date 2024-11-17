@@ -20,7 +20,7 @@ public class User {
         this.name = name;
         this.lastName = lastName;
         this.userParticipation = userParticipation;
-        this.active = active;
+        this.active = true;
     }
 
     public User() {
