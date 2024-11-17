@@ -1,6 +1,6 @@
-package repository;
+package com.itau.research.repository;
 
-import domain.User;
+import com.itau.research.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.UUID;
 

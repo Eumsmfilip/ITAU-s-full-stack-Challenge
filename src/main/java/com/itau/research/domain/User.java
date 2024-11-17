@@ -1,11 +1,11 @@
-package domain;
+package com.itau.research.domain;
 
 import jakarta.persistence.*;
 
 import java.util.UUID;
 
 @Entity
-@Table(name = "User")
+@Table(name = "user_entity")
 public class User {
 
     @Id
@@ -14,6 +14,15 @@ public class User {
     private String name;
     private String lastName;
     private double userParticipation;
+
+    public User(String name, String lastName, double userParticipation) {
+        this.name = name;
+        this.lastName = lastName;
+        this.userParticipation = userParticipation;
+    }
+
+    public User() {
+    }
 
     public String getName() {
         return name;
@@ -45,16 +54,6 @@ public class User {
 
     public void setId(UUID id) {
         this.id = id;
-    }
-
-    public User(UUID id, String name, String lastName, double userParticipation) {
-        this.id = id;
-        this.name = name;
-        this.lastName = lastName;
-        this.userParticipation = userParticipation;
-    }
-
-    public User (){
     }
 
 }
