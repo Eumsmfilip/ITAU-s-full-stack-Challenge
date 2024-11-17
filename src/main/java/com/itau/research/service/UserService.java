@@ -29,6 +29,7 @@ public class UserService {
                 userRequestDTO.userParticipation(),
                 userRequestDTO.active()
         );
+        newUser.setActive(true);
         return userRepository.save(newUser);
     }
 
