@@ -14,11 +14,13 @@ public class User {
     private String name;
     private String lastName;
     private double userParticipation;
+    private boolean active;
 
-    public User(String name, String lastName, double userParticipation) {
+    public User(String name, String lastName, double userParticipation, boolean active) {
         this.name = name;
         this.lastName = lastName;
         this.userParticipation = userParticipation;
+        this.active = active;
     }
 
     public User() {
@@ -56,4 +58,11 @@ public class User {
         this.id = id;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 }

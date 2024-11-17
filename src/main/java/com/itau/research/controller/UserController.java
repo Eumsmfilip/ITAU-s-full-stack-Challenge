@@ -3,6 +3,7 @@ package com.itau.research.controller;
 import com.itau.research.domain.User;
 import com.itau.research.domain.UserRequestDTO;
 import com.itau.research.domain.UserResponseDTO;
+import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +37,13 @@ public class UserController {
     public ResponseEntity<User> updateUser(@RequestBody UserResponseDTO userResponseDTO){
         User updatedUser = userService.updateUser(userResponseDTO);
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+    }
+
+    @DeleteMapping
+    @Transactional
+    public ResponseEntity deleteUser(@RequestBody UserResponseDTO userResponseDTO){
+        User deletedUser = userService.deleteUser(userResponseDTO);
+        return ResponseEntity.noContent().build();
     }
 
 }

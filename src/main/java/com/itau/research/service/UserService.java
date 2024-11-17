@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.itau.research.repository.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -21,21 +22,32 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User createUser(UserRequestDTO userRequestDTO){
+    public User createUser(UserRequestDTO userRequestDTO) {
         User newUser = new User(
                 userRequestDTO.name(),
                 userRequestDTO.lastName(),
-                userRequestDTO.userParticipation()
+                userRequestDTO.userParticipation(),
+                userRequestDTO.active()
         );
         return userRepository.save(newUser);
     }
 
-    public User updateUser(UserResponseDTO userResponseDTO){
+    public User updateUser(UserResponseDTO userResponseDTO) {
         User userUpdated = userRepository.getReferenceById(userResponseDTO.id());
         userUpdated.setName(userResponseDTO.name());
         userUpdated.setLastName(userResponseDTO.lastName());
         userUpdated.setUserParticipation(userResponseDTO.userParticipation());
         return userRepository.save(userUpdated);
+    }
+
+    public User deleteUser(UserResponseDTO userResponseDTO) {
+        Optional<User> userOptional = userRepository.findById(userResponseDTO.id());
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            user.setActive(false);
+        }
+        return null;
+
     }
 
 
