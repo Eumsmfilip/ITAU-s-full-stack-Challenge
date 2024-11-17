@@ -2,6 +2,7 @@ package com.itau.research.controller;
 
 import com.itau.research.domain.User;
 import com.itau.research.domain.UserRequestDTO;
+import com.itau.research.domain.UserResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,12 @@ public class UserController {
     public ResponseEntity <User> createUser(@RequestBody UserRequestDTO userRequestDTO){
         User newUser = userService.createUser(userRequestDTO);
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+    }
+
+    @PutMapping
+    public ResponseEntity<User> updateUser(@RequestBody UserResponseDTO userResponseDTO){
+        User updatedUser = userService.updateUser(userResponseDTO);
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 
 }
