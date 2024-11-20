@@ -27,21 +27,28 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
+    @GetMapping("/research{id}")
+    public ResponseEntity<User> getUser(@RequestBody UserResponseDTO data){
+        User user = userService.getUserById(data);
+        return ResponseEntity.ok(user);
+    }
+
+
     @PostMapping
-    public ResponseEntity <User> createUser(@RequestBody UserRequestDTO userRequestDTO){
+    public ResponseEntity<User> createUser(@RequestBody UserRequestDTO userRequestDTO) {
         User newUser = userService.createUser(userRequestDTO);
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<User> updateUser(@RequestBody UserResponseDTO userResponseDTO){
+    public ResponseEntity<User> updateUser(@RequestBody UserResponseDTO userResponseDTO) {
         User updatedUser = userService.updateUser(userResponseDTO);
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 
     @DeleteMapping
     @Transactional
-    public ResponseEntity deleteUser(@RequestBody UserResponseDTO userResponseDTO){
+    public ResponseEntity deleteUser(@RequestBody UserResponseDTO userResponseDTO) {
         User deletedUser = userService.deleteUser(userResponseDTO);
         return ResponseEntity.noContent().build();
     }
