@@ -28,6 +28,9 @@ public class UserService {
     }
 
     public User getUserById(UserResponseDTO data) {
+        if (data.id() == null) {
+            throw new ApiRequestException("User ID cannot be null.");
+        }
         return userRepository.findById(data.id()).orElseThrow(() -> new ApiRequestException("No users found with ID " + data.id()));
     }
 
