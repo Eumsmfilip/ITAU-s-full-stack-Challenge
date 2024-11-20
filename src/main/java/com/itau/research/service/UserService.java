@@ -22,19 +22,13 @@ public class UserService {
     public List<User> getAllUsers() {
         List<User> users = userRepository.findAll();
         if (users.isEmpty()) {
-            throw new ApiRequestException("No users found");
+            throw new ApiRequestException("No users found.");
         }
         return users;
     }
 
-
     public User getUserById(UserResponseDTO data) {
-        Optional<User> userOptional = userRepository.findById(data.id());
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            return user;
-        }
-        return null;
+        return userRepository.findById(data.id()).orElseThrow(() -> new ApiRequestException("No users found with ID " + data.id()));
     }
 
     public User createUser(UserRequestDTO userRequestDTO) {

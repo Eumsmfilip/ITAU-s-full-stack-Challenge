@@ -21,13 +21,13 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping
-    public ResponseEntity<List<User>> getUsers() {
-        List<User> users = userService.getAllUsers();
-        return ResponseEntity.ok(users);
-    }
+//    @GetMapping
+//    public ResponseEntity<List<User>> getUsers() {
+//        List<User> users = userService.getAllUsers();
+//        return ResponseEntity.ok(users);
+//    }
 
-    @GetMapping("/research{id}")
+    @GetMapping
     public ResponseEntity<User> getUser(@RequestBody UserResponseDTO data){
         User user = userService.getUserById(data);
         return ResponseEntity.ok(user);
